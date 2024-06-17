@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import shuffle from './utilities/shuffle';
 import Card from './components/Card';
-
+import Header from './components/Header';
 
 
 
@@ -12,6 +12,10 @@ function App() {
   const [pickTwo, setPickTwo] = useState(null); // Second selection
   const [disabled, setDisabled] = useState(false); // Delay handler
   const [wins, setWins] = useState(0); // Win streak
+  const onReset = () => {
+    handleTurn();
+    setCard(shuffle)
+  }
 
   const handleClick = (card) => {
     if (!disabled) {
@@ -58,31 +62,31 @@ function App() {
 
     if (checkUnmatched.length === 0 && cards.length) {
       console.log("You win")
-      setWins(wins + 1)
-      handleTurn()
-      setCard(shuffle)
+      setWins(w => w + 1)
+      // handleTurn()
+      // setCard(shuffle)
     }
-
-
-
-  }, [cards, wins])
+  }, [cards])
 
 
   return (
-    <div className='grid'>
-      {cards.map(card => {
-        const { id, image, matched } = card
+    <>
+      <Header onReset={onReset} wins={wins} />
+      <div className='grid'>
+        {cards.map(card => {
+          const { id, image, matched } = card
 
-        return <Card key={id}
-          image={image}
-          //!interesting, if I change the below into pickOne?.image === card.image || pickTwo?.image === card.image || matched, then everytime I pressed
-          selected={pickOne === card || pickTwo === card || matched}
-          onClick={() => handleClick(card)} />
+          return <Card key={id}
+            image={image}
+            //!interesting, if I change the below into pickOne?.image === card.image || pickTwo?.image === card.image || matched, then everytime I pressed
+            selected={pickOne === card || pickTwo === card || matched}
+            onClick={() => handleClick(card)} />
 
-      })}
+        })}
+      </div>
+    </>
 
 
-    </div>
   );
 }
 

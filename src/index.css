@@ -16,7 +16,7 @@ warning in VSCode,change the css.lint.unknownAtRules setting to ignore. */
   --radius: 0.75rem;
   --shadow: 1px 1px 13px #03030390;
 
-  --card-width: 150px;
+  --card-width: 100px;
   --card-width-mobile: 20vw;
   --card-enter: enter 600ms ease;
 
@@ -72,11 +72,17 @@ h4 {
 }
 
 button {
+  /* display: flex;
+  align-self: center; */
   border: none;
   outline: none;
   padding: 0.5rem;
   border-radius: 3px;
   margin: auto;
+}
+
+button:hover {
+  opacity: 0.75;
 }
 
 /* ========= Grid ========================= */
@@ -101,6 +107,7 @@ button {
 
 .card img {
   width: 100%;
+  /* height: 100%; */
 }
 
 .card-face,
@@ -131,6 +138,23 @@ button {
   transform: var(--rotate-90);
   transition-delay: 0s;
 }
+
+.game-info {
+  text-align: center;
+  /* display: inline-flex;
+  align-items: center;
+  justify-content: center; */
+  margin-bottom: 1rem;
+}
+
+.info-ss {
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #ffa200; */
+  padding: 0.5rem;
+}
+
 
 @keyframes enter {
   from {
